@@ -4,7 +4,7 @@ const Header = () => {
 
   return (
     <div>
-        <h1>Calcular tiempo entre dos fechas</h1>
+      <h1>Calcular tiempo entre dos fechas</h1>
     </div>
   )
 }
