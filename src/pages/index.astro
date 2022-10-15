@@ -1,9 +1,38 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Card from "../components/Card.astro";
+import Layout from "../layouts/Layout.astro";
+
+let options = [
+	{
+		title: "Difference Between Dates",
+		src:"https://placekitten.com/500/300",
+		link:"/"
+	},
+	{
+		title: "Password Generator",
+		src:"https://placekitten.com/540/300",
+		link:"/"
+	},
+	{
+		title: "Character Counter",
+		src:"https://placekitten.com/550/300",
+		link:"/"
+	},
+	{
+		title: "Copy Emojis",
+		src:"https://placekitten.com/530/300",
+		link:"/"
+	}
+]
+
 ---
 
-<Layout title="Tools utils - :D" emoji="&#128523">
-	<main>
-		
+<Layout title="Tools utils - :D" emoji="😋">
+	<main class="flex items-center flex-row justify-center m-10 flex-wrap max-w-screen-lg">
+		{
+			options.map(op => (
+				<Card title={op.title} src={op.src} link={op.link}/>
+			))
+		}
 	</main>
 </Layout>

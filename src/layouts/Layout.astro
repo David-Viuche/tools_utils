@@ -18,7 +18,7 @@ const { title, emoji } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="bg-zinc-300 font-sans">
+	<body class="bg-zinc-300 font-sans flex items-center justify-center flex-col">
 		<Header emoji={emoji}/>
 		<slot />
 	</body>
