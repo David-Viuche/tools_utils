@@ -1,0 +1,12 @@
+---
+export interface Props {
+    message: string;
+    emoji: string;
+}
+
+const { message, emoji } = Astro.props;
+---
+
+<main class="w-full h-screen flex items-center justify-center flex-row text-center">
+    <h1 class="text-3xl">{message} {emoji}</h1>
+</main>
