@@ -13,6 +13,7 @@ const BetweenDates = () => {
     const [dateIni, setDateIni] = useState('')
     const [dateEnd, setDateEnd] = useState('')
     const [diasBetween, setdiasBetween] = useState('')
+    const [res, setRes] = useState(false)
 
     const handleOnchange = (event) => {
         event.preventDefault()
@@ -22,7 +23,6 @@ const BetweenDates = () => {
         }
 
         if (event.target.name === 'fin-date') {
-
             setDateEnd(event.target.value)
         }
     }
@@ -34,18 +34,29 @@ const BetweenDates = () => {
             alert('Ingrese dos fechas validas')
             return null
         }
-
+        setRes(true)
         setdiasBetween(calcularDiasAusencia(dateIni, dateEnd))
+    }
+
+    const handleReset = () => {
+        setDateEnd('')
+        setDateIni('')
+        setRes(false)
     }
 
     return (
         <>
-            <form onSubmit={handleOnSubmit} className="w-full h-auto flex flex-col items-center md:max-w-xl ">
+            <div className="w-full h-auto flex flex-col items-center md:max-w-xl ">
                 <Input name='ini-date' type='date' label='Initial date' value={dateIni} handleOnInput={handleOnchange} />
                 <Input name='fin-date' type='date' label='Final date' value={dateEnd} handleOnInput={handleOnchange} />
-                <button className='w-2/5 h-14 border-2 my-5 bg-zinc-700 text-white text-2xl rounded-md shadow-md hover:bg-zinc-500'>Send</button>
-            </form>
-            <h2 className='m-5 p-3'>Diferencia en días: {diasBetween}</h2>
+                <div className='w-full flex justify-center flex-wrap'>
+                    <button onClick={handleReset} className='w-full h-14 border-2 m-5 bg-red-600 text-white text-2xl rounded-md shadow-md hover:bg-red-400 sm:w-2/5'>Reset</button>
+                    <button onClick={handleOnSubmit} type='submit' className='w-full h-14 border-2 m-5 bg-cyan-600 text-white text-2xl rounded-md shadow-md hover:bg-cyan-400 sm:w-2/5'>Send</button>
+                </div>
+            </div>
+            {
+                (res) ? <h2 className='m-5 p-3'>Diferencia en días: {diasBetween}</h2> : ''
+            }
         </>
     )
 }
