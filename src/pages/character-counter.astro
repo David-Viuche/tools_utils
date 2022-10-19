@@ -1,0 +1,10 @@
+---
+import Container from "../layouts/Container.astro";
+import Layout from "../layouts/Layout.astro";
+import CharacterCounter from "../components/character-counter"
+---
+<Layout title="Tools utils - :D" emoji="😋">
+	<Container title="Character Counter">
+        <CharacterCounter client:load />
+    </Container>
+</Layout>
