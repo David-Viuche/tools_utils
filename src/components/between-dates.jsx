@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Input from './input'
+import Alert from './Alert'
 
 const calcularDiasAusencia = (fechaIni, fechaFin) => {
     var diaEnMils = 1000 * 60 * 60 * 24,
@@ -14,6 +15,8 @@ const BetweenDates = () => {
     const [dateEnd, setDateEnd] = useState('')
     const [diasBetween, setdiasBetween] = useState('')
     const [res, setRes] = useState(false)
+    const [showAlert, setShowAlert] = useState(false)
+    const [msgAlert, setMsgAlert] = useState('Enter two valid dates')
 
     const handleOnchange = (event) => {
         event.preventDefault()
@@ -31,9 +34,11 @@ const BetweenDates = () => {
         event.preventDefault()
 
         if (!dateEnd || !dateIni) {
-            alert('Ingrese dos fechas validas')
+            setMsgAlert('Enter two valid dates')
+            setShowAlert(true)
             return null
         }
+        setShowAlert(false)
         setRes(true)
         setdiasBetween(calcularDiasAusencia(dateIni, dateEnd))
     }
@@ -42,10 +47,12 @@ const BetweenDates = () => {
         setDateEnd('')
         setDateIni('')
         setRes(false)
+        setShowAlert(false)
     }
 
     return (
         <>
+            <Alert message={msgAlert} hidden={showAlert}/>
             <div className="w-full h-auto flex flex-col items-center md:max-w-xl ">
                 <Input name='ini-date' type='date' label='Initial date' value={dateIni} handleOnInput={handleOnchange} />
                 <Input name='fin-date' type='date' label='Final date' value={dateEnd} handleOnInput={handleOnchange} />
