@@ -7,7 +7,7 @@ const calcularDiasAusencia = (fechaIni, fechaFin) => {
         desde = new Date(fechaIni.substr(0, 10)),
         hasta = new Date(fechaFin.substr(0, 10)),
         diff = hasta.getTime() - desde.getTime() + diaEnMils;// +1 incluir el dia de ini
-    return diff / diaEnMils;
+    return Math.abs(diff / diaEnMils);
 }
 
 const BetweenDates = () => {
